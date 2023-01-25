@@ -1,0 +1,38 @@
+version: 0.2
+
+env:
+  shell: bash
+  variables:
+    TEAM: "dts-legacy"
+    PROJECT: "tribunals-$APPLICATION_NAME"
+    S3_BUCKET: "dts-legacy-codebuild-terraform"
+    DYNAMODB_TABLE: "tribunals-transport-tf-lock"
+    ENV: "$ENVIRONMENT"
+
+#  exported-variables:
+#    - TF_ACTION
+#    - TF_MODE
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.10
+    commands:
+      - "cd /usr/bin"      
+      - "curl -s -qL -o terraform.zip https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip"
+      - "unzip -o terraform.zip"
+  build:
+    commands:
+      - cd "$CODEBUILD_SRC_DIR"
+      - source ./myterraform.sh  
+  post_build:
+    commands:
+      - echo "${TF_ACTION} run successfully for $APPLICATION_NAME - $ENVIRONMENT."     
+      - echo "Terraform completed on `date`"
+
+artifacts:
+  files:   
+    - tf.plan
+  name: TerraformPlanArtifacts
+  discard-paths: no
+  base-directory: /opt 
