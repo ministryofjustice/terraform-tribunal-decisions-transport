@@ -1,10 +1,10 @@
 variable "region" {
-  default = "eu-west-1" 
+  default = "eu-west-2" 
 }
 
 variable "application_name" {
-  description = "(Required)Tribunal Decisions application name\nTransport Tribunal\nLands Chamber Tribunal"
-  #default = "transport"
+  #description = "(Required)Tribunal Decisions application name\nTransport Tribunal\nLands Chamber Tribunal"
+  default = "transport"
 }
 
 variable "instance_type" {

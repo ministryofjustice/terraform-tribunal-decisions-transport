@@ -4,9 +4,9 @@ module "elasticBeanStalk" {
 certificate                      = module.dns_Ssl.certificate
 application_name                 = local.name
 instance_type                    = var.instance_type
-vpc_id                           = data.aws_vpc.vpc.id
+vpc_id                           = data.aws_vpc.selected.id
 environment                      = var.environment
-vpc_security_group_id            = data.aws_security_group.security_group.id
-subnet_ids                       = ["subnet-06e5a811ce6dd646a", "subnet-0d50a5070be6d014e", "subnet-09243bfdb0fdf847e"]
+vpc_security_group_id            = aws_security_group.security_group.id
+subnet_ids                       = [data.aws_subnet.subnet2a.id, data.aws_subnet.subnet2b.id, data.aws_subnet.subnet2c.id]
 
 }
