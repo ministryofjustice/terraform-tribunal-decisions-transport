@@ -33,7 +33,7 @@ EOF
     then
       echo "Creating initial database...."
       echo "DB_URL is <${DB_URL}>"
-      sqlcmd -S ${DB_URL} -U admin -P password -Q "create database transport"
+      sqlcmd -S ${DB_URL} -U ${USER_NAME} -P ${PASSWORD} -Q "create database transport"
     else
       echo "sqlcmd not found"
     fi

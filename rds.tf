@@ -20,6 +20,8 @@ resource "null_resource" "setup_db" {
 
     environment = {
       DB_URL = data.aws_db_instance.database.address
+      USER_NAME = jsondecode(data.aws_secretsmanager_secret_version.current.secret_string)["username"]
+      PASSWORD = jsondecode(data.aws_secretsmanager_secret_version.current.secret_string)["password"]
     }
   }
   triggers = {
