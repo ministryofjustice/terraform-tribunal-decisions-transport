@@ -27,7 +27,7 @@ locals {
 resource "aws_instance" "instance" {
   ami           = "ami-05bfd03d0709e3ecb"
   instance_type = "t2.micro"
-  key_name      = "tf-tribunals-${var.application_name}-${var.environment}"
+  key_name      = "terraform-tribunals"
   subnet_id = data.aws_subnet.subnet2a.id
   vpc_security_group_ids = [aws_security_group.security_group.id]
 
