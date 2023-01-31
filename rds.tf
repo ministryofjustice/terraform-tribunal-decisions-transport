@@ -54,7 +54,7 @@ resource "mssql_user" "db-user" {
     }
   }
 
-  database  = "transport"
+  database  = "master"
   username  = "admin"
   password  = random_password.password.result 
 
@@ -74,7 +74,7 @@ resource "aws_secretsmanager_secret_version" "db_credentials" {
   "password": "${mssql_user.db-user.password}",  
   "host": "${mssql_user.db-user.server[0].host}",
   "port": ${mssql_user.db-user.server[0].port}, 
-  "database_name": ${mssql_user.db-user.database}
+  "database_name": "transport"
 }
 EOF
 }
