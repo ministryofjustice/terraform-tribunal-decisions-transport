@@ -55,7 +55,7 @@ resource "mssql_user" "db-user" {
   }
 
   database  = "master"
-  username  = "admin"
+  username  = "transport"
   password  = random_password.password.result 
 
   roles     = ["db_owner"]
