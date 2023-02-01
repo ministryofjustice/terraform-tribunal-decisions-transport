@@ -29,3 +29,11 @@ variable "environment" {
   type = string
   #default = "development"
 }
+
+variable app_db_name {
+  default = "Transport"
+}  
+
+variable app_db_login_name {
+  default = "transport"
+}  
