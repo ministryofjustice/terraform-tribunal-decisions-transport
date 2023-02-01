@@ -54,11 +54,10 @@ resource "mssql_user" "db-user" {
     }
   }
 
-  database  = "master"
-  username  = "transport"
+  database  = "transport"
+  username  = "transport-app-user"
   password  = random_password.password.result 
 
-  roles     = ["db_owner"]
 }
 
 
