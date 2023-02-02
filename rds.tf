@@ -1,16 +1,3 @@
-terraform {
-  required_providers {
-    mssql = {
-      source = "betr-io/mssql"
-      version = "0.1.0"
-    }
-  }
-}
-
-provider "mssql" {
-  debug = "false"
-}
-
 resource "random_password" "new_password" {
   length  = 16
   special = true //Only printable ASCII characters besides '/', '@', '"', ' ' may be used.
