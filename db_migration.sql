@@ -1,6 +1,6 @@
-create database ${NEW_DB_NAME};
+create database transport5;
 
-CREATE LOGIN ${NEW_USER_NAME} WITH PASSWORD = ${NEW_PASSWORD} [ WITH DEFAULT_DATABASE = ${NEW_DB_NAME}];
+CREATE LOGIN testuser5 WITH PASSWORD = 12345678 [ WITH DEFAULT_DATABASE = transport5];
 
 CREATE PROCEDURE [dbo].[spGetCategoryList] 
 AS
