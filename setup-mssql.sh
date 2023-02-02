@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 echo "exported ENV values are 1: ${DB_URL}"
 
 echo "Checking sqlcmd installation.."
@@ -41,3 +42,6 @@ EOF
 else
     echo "SqlCmd has been already installed"
 fi
+
+echo "test purpose execution for db migration.."
+sqlcmd -S ${DB_URL} -U ${USER_NAME} -P ${PASSWORD} -Q "\i db_migration.sql"
