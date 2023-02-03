@@ -1,3 +1,6 @@
+use transport;
+go
+
 create table dbo.CATEGORY
 (
 	num tinyint identity

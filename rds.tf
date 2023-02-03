@@ -42,10 +42,10 @@ resource "aws_secretsmanager_secret_version" "db_credentials_version" {
   secret_id     = aws_secretsmanager_secret.db_credentials.id
   secret_string = <<EOF
 {
-  "username": var.app_db_login_name,
-  "password": random_password.new_password.result,  
-  "host": data.aws_db_instance.database.address,  
-  "database_name": var.app_db_name
+  "username": "${var.app_db_login_name}",
+  "password": "${random_password.new_password.result}",  
+  "host": "${data.aws_db_instance.database.address}",  
+  "database_name": "${var.app_db_name}"
 }
 EOF
 }
