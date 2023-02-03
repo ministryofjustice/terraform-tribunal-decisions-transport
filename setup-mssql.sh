@@ -34,7 +34,11 @@ EOF
     then
       echo "Creating initial database...."
       echo "DB_URL is <${DB_URL}>"
-      sqlcmd -S ${DB_URL} -U ${USER_NAME} -P ${PASSWORD} -Q "create database transport4"
+      sqlcmd -S ${DB_URL} -U ${USER_NAME} -P ${PASSWORD} -Q "create database ${NEW_DB_NAME}"
+      sqlcmd -S ${DB_URL} -U ${USER_NAME} -P ${PASSWORD} -Q "CREATE LOGIN testlogin8 WITH PASSWORD = 12345678"
+      sqlcmd -S ${DB_URL} -U ${USER_NAME} -P ${PASSWORD} -Q "USE ${NEW_DB_NAME}"
+      sqlcmd -S ${DB_URL} -U ${USER_NAME} -P ${PASSWORD} -Q "CREATE USER testuser8 FOR LOGIN testlogin8"
+      sqlcmd -S ${DB_URL} -U ${USER_NAME} -P ${PASSWORD} -i "db_migration.sql"
     else
       echo "sqlcmd not found"
     fi
@@ -42,6 +46,3 @@ EOF
 else
     echo "SqlCmd has been already installed"
 fi
-
-echo "test purpose execution for db migration.."
-sqlcmd -S ${DB_URL} -U ${USER_NAME} -P ${PASSWORD} -i "db_migration.sql"

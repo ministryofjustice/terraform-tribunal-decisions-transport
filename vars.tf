@@ -31,7 +31,7 @@ variable "environment" {
 }
 
 variable app_db_name {
-  default = "transport7"
+  default = "transport8"
 }  
 
 variable app_db_login_name {
