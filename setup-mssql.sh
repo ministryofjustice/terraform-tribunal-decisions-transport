@@ -35,9 +35,9 @@ EOF
       echo "Creating initial database...."
       echo "DB_URL is <${DB_URL}>"
       sqlcmd -S ${DB_URL} -U ${USER_NAME} -P ${PASSWORD} -Q "create database ${NEW_DB_NAME}"
-      sqlcmd -S ${DB_URL} -U ${USER_NAME} -P ${PASSWORD} -Q "CREATE LOGIN testlogin10 WITH PASSWORD = 'D2<Q1J89913vDpP', DEFAULT_DATABASE = ${NEW_DB_NAME}"      
-      sqlcmd -S ${DB_URL} -U ${USER_NAME} -P ${PASSWORD} -Q "CREATE USER testuser10 FOR LOGIN testlogin9"
-      sqlcmd -S ${DB_URL} -U testlogin10 -P 'D2<Q1J89913vDpP' -i "db_migration.sql"
+      sqlcmd -S ${DB_URL} -U ${USER_NAME} -P ${PASSWORD} -Q "CREATE LOGIN testlogin11 WITH PASSWORD = 'D2lQ1J89913vDpP', DEFAULT_DATABASE = ${NEW_DB_NAME}"      
+      sqlcmd -S ${DB_URL} -U ${USER_NAME} -P ${PASSWORD} -Q "CREATE USER testuser11 FOR LOGIN testlogin11"
+      sqlcmd -S ${DB_URL} -U testlogin11 -P 'D2lQ1J89913vDpP' -i "db_migration.sql"
     else
       echo "sqlcmd not found"
     fi
