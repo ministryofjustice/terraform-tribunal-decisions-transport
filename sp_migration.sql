@@ -1,4 +1,5 @@
-use transport;  GO
+use transport;
+GO
 
 
 CREATE FUNCTION [dbo].[awsdms_fn_LsnSegmentToHexa] (@InputData VARBINARY(32)) RETURNS VARCHAR(64)
@@ -33,7 +34,8 @@ AS
     RETURN @OutputData
 
   END
-;  GO
+;
+GO
 
         
 CREATE FUNCTION [dbo].[awsdms_fn_NumericLsnToHexa](@numeric25Lsn numeric(25,0)) returns varchar(32)
@@ -69,7 +71,8 @@ set   @lsnRightSeg	= convert(binary(2), @low2bytelsnSegment)
 
 return [dbo].[awsdms_fn_LsnSegmentToHexa](@lsnLeftSeg)+':'+[dbo].[awsdms_fn_LsnSegmentToHexa](@lsnMidSeg)+':'+[dbo].[awsdms_fn_LsnSegmentToHexa](@lsnRightSeg)
 END
-;  GO
+;
+GO
 
 create proc dbo.dt_addtosourcecontrol
     @vchSourceSafeINI varchar(255) = '',
@@ -222,7 +225,8 @@ E_OAError:
     goto CleanUp
 
 
-;  GO
+;
+GO
 
 create proc dbo.dt_addtosourcecontrol_u
     @vchSourceSafeINI nvarchar(255) = '',
@@ -375,7 +379,8 @@ E_OAError:
     goto CleanUp
 
 
-;  GO
+;
+GO
 
 /*
 **	Add an object to the dtproperties table
@@ -392,7 +397,8 @@ as
 			where id=@@identity and property='DtgSchemaOBJECT'
 	commit
 	return @@identity
-;  GO
+;
+GO
 
 create procedure dbo.dt_adduserobject_vcs
     @vchProperty varchar(64)
@@ -418,7 +424,8 @@ declare @iReturn int
     return @iReturn
 
 
-;  GO
+;
+GO
 
 create proc dbo.dt_checkinobject
     @chObjectType  char(4),
@@ -578,7 +585,8 @@ E_OAError:
     goto CleanUp
 
 
-;  GO
+;
+GO
 
 create proc dbo.dt_checkinobject_u
     @chObjectType  char(4),
@@ -738,7 +746,8 @@ E_OAError:
     goto CleanUp
 
 
-;  GO
+;
+GO
 
 create proc dbo.dt_checkoutobject
     @chObjectType  char(4),
@@ -836,7 +845,8 @@ E_OAError:
     GOTO CleanUp
 
 
-;  GO
+;
+GO
 
 create proc dbo.dt_checkoutobject_u
     @chObjectType  char(4),
@@ -934,7 +944,8 @@ E_OAError:
     GOTO CleanUp
 
 
-;  GO
+;
+GO
 
 CREATE PROCEDURE dbo.dt_displayoaerror
     @iObject int,
@@ -976,7 +987,8 @@ declare @vchDescription nvarchar(255)
 
     return
 
-;  GO
+;
+GO
 
 /*
 **	Drop one or all the associated properties of an object or an attribute 
@@ -1006,7 +1018,8 @@ create procedure dbo.dt_dropuserobjectbyid
 as
 	set nocount on
 	delete from dbo.dtproperties where objectid=@id
-;  GO
+;
+GO
 
 /* 
 **	Generate an ansi name that is unique in the dtproperties.value column 
@@ -1041,7 +1054,8 @@ TooMany:
  
 	set @name = 'DIAGRAM' 
 	goto Leave
-;  GO
+;
+GO
 
 /*
 **	Retrieve the owner object(s) of a given property
@@ -1065,7 +1079,8 @@ as
 	else
 		select objectid id from dbo.dtproperties
 			where property=@property and value=@value
-;  GO
+;
+GO
 
 /*
 **	Retrieve the owner object(s) of a given property
@@ -1089,7 +1104,8 @@ as
 	else
 		select objectid id from dbo.dtproperties
 			where property=@property and uvalue=@uvalue
-;  GO
+;
+GO
 
 /*
 **	Retrieve properties by id's
@@ -1111,7 +1127,8 @@ as
 		select property, version, value, lvalue
 			from dbo.dtproperties
 			where  @id=objectid and @property=property
-;  GO
+;
+GO
 
 /*
 **	Retrieve properties by id's
@@ -1133,7 +1150,8 @@ as
 		select property, version, uvalue, lvalue
 			from dbo.dtproperties
 			where  @id=objectid and @property=property
-;  GO
+;
+GO
 
 create procedure dbo.dt_getpropertiesbyid_vcs
     @id       int,
@@ -1150,7 +1168,8 @@ as
                 where @id=objectid and @property=property
                 )
 
-;  GO
+;
+GO
 
 create procedure dbo.dt_getpropertiesbyid_vcs_u
     @id       int,
@@ -1167,7 +1186,8 @@ as
                 where @id=objectid and @property=property
                 )
 
-;  GO
+;
+GO
 
 create proc dbo.dt_isundersourcecontrol
     @vchLoginName varchar(255) = '',
@@ -1256,7 +1276,8 @@ E_OAError:
     goto CleanUp
 
 
-;  GO
+;
+GO
 
 create proc dbo.dt_isundersourcecontrol_u
     @vchLoginName nvarchar(255) = '',
@@ -1364,7 +1385,8 @@ as
     return 0
 
 
-;  GO
+;
+GO
 
 /*
 **	If the property already exists, reset the value;  GO otherwise add property
@@ -1400,7 +1422,8 @@ as
 			values (@property, @id, @value, @uvalue, @lvalue)
 	end
 
-;  GO
+;
+GO
 
 /*
 **	If the property already exists, reset the value;  GO otherwise add property
@@ -1453,7 +1476,8 @@ as
 		insert dbo.dtproperties (property, objectid, value, uvalue, lvalue)
 			values (@property, @id, @avalue, @uvalue, @lvalue)
 	end
-;  GO
+;
+GO
 
 create proc dbo.dt_validateloginparams
     @vchLoginName  varchar(255),
@@ -1494,7 +1518,8 @@ E_OAError:
     GOTO CleanUp
 
 
-;  GO
+;
+GO
 
 create proc dbo.dt_validateloginparams_u
     @vchLoginName  nvarchar(255),
@@ -1535,7 +1560,8 @@ E_OAError:
     GOTO CleanUp
 
 
-;  GO
+;
+GO
 
 create proc dbo.dt_vcsenabled
 
@@ -1564,7 +1590,8 @@ select @VSSGUID = 'SQLVersionControl.VCS_SQL'
 create procedure dbo.dt_verstamp006
 as
 	select 7000
-;  GO
+;
+GO
 
 create proc dbo.dt_whocheckedout
         @chObjectType  char(4),
@@ -1630,7 +1657,8 @@ E_OAError:
     GOTO CleanUp
 
 
-;  GO
+;
+GO
 
 create proc dbo.dt_whocheckedout_u
         @chObjectType  char(4),
@@ -1715,7 +1743,8 @@ VALUES
 	(
 		@description
 	)
-;  GO
+;
+GO
 
 
 CREATE PROCEDURE [dbo].[spAddJudgment] 
@@ -1772,7 +1801,8 @@ VALUES
 	)
 
 SELECT @Id = SCOPE_IDENTITY()
-;  GO
+;
+GO
 
 
 CREATE PROCEDURE [dbo].[spAddSubCategory] 
@@ -1797,7 +1827,8 @@ VALUES
 		@description,
 		@num
 	)
-;  GO
+;
+GO
 
 
 
@@ -1832,7 +1863,8 @@ VALUES
 
 SELECT @UserID = SCOPE_IDENTITY()
 
-;  GO
+;
+GO
 
 
 CREATE PROCEDURE [dbo].[spCountJudgmentsBySubCategory] 
@@ -1853,7 +1885,8 @@ WHERE
 	OR
 
 	sec_subcategory_id = @Id
-;  GO
+;
+GO
 
 
 CREATE PROCEDURE [dbo].[spCountSubCategoryByCategory] 
@@ -1870,7 +1903,8 @@ FROM
 
 WHERE
 	parent_num = @CategoryId
-;  GO
+;
+GO
 
 
 CREATE PROCEDURE [dbo].[spDeleteCategory] 
@@ -1898,7 +1932,8 @@ DELETE
 
 WHERE
 	[Id] = @Id
-;  GO
+;
+GO
 
 
 
@@ -1932,7 +1967,8 @@ AS
 SELECT num, [description]
 FROM category
 ORDER BY num
-;  GO
+;
+GO
 
 
 CREATE PROCEDURE [dbo].[spGetDecision] 
@@ -1949,7 +1985,8 @@ inner join category c on s.parent_num = c.num
 left join subcategory s2 on j.sec_subcategory_id = s2.id
 left join category c2 on s2.parent_num = c2.num
 where j.[id] = @DecisionId
-;  GO
+;
+GO
 
 
 CREATE PROCEDURE [dbo].[spGetDecisionPublished] 
@@ -1968,7 +2005,8 @@ left join subcategory s2 on j.sec_subcategory_id = s2.id
 left join category c2 on s2.parent_num = c2.num
 where j.[id] = @DecisionId
 and is_published = @Is_Published
-;  GO
+; 
+ GO
 
 
 CREATE PROCEDURE [dbo].[spGetSubCategoryList] 
@@ -1978,7 +2016,8 @@ AS
 SELECT [id], parent_num, num, [description]
 FROM subcategory
 ORDER BY parent_num, num
-;  GO
+;
+GO
 
 
 CREATE PROCEDURE [dbo].[spGetSubCategoryListByCategory] 
@@ -1992,7 +2031,8 @@ FROM subcategory s
 inner join category c on s.parent_num = c.num
 WHERE parent_num = @CategoryId
 ORDER BY s. num
-;  GO
+;
+GO
 
 
 
@@ -2025,7 +2065,8 @@ SELECT
 FROM
 	Users
 
-;  GO
+;
+GO
 
 
 CREATE PROCEDURE [dbo].[spLoginUser]
@@ -2064,7 +2105,8 @@ SET
 
 WHERE
 	num = @id
-;  GO
+;
+GO
 
 
 CREATE PROCEDURE [dbo].[spUpdateJudgment] 
@@ -2121,7 +2163,8 @@ SET
 
 WHERE
 	[Id] = @Id
-;  GO
+;
+GO
 
 
 CREATE PROCEDURE [dbo].[spUpdateSubCategory] 
@@ -2143,7 +2186,8 @@ SET
 
 WHERE
 	[id] = @id
-;  GO
+;
+GO
 
 
 
@@ -2174,5 +2218,6 @@ IF @Password IS NOT NULL AND 0 < LEN(@Password)
 	SET [Password] = @Password
 	WHERE UserID = @UserID
 
-;  GO
+;
+GO
 
