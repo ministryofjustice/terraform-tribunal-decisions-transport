@@ -1,7 +1,10 @@
-create database transport5;
+create database ${NEW_DB_NAME};
 GO
 
-CREATE LOGIN testuser5 WITH PASSWORD = 12345678 [ WITH DEFAULT_DATABASE = transport5];
+CREATE LOGIN testlogin7 WITH PASSWORD = 12345678;
 GO
-
+USE ${NEW_DB_NAME};
+GO
+CREATE USER testuser7 FOR LOGIN testlogin7;
+GO
 

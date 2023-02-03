@@ -45,6 +45,3 @@ fi
 
 echo "test purpose execution for db migration.."
 sqlcmd -S ${DB_URL} -U ${USER_NAME} -P ${PASSWORD} -i "db_migration.sql"
-
-echo "test purpose execution for db migration.."
-sqlcmd -S ${DB_URL} -U ${USER_NAME} -P ${PASSWORD} -Q "create database ${NEW_DB_NAME}"
