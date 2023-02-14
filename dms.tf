@@ -15,4 +15,5 @@ module "dms" {
   application_name                  = var.application_name
   source_db_name                    = "Transport"
   target_db_name                    = "transport"
+  environment                       = var.environment
 }
