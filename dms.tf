@@ -16,4 +16,5 @@ module "dms" {
   source_db_name                    = "Transport"
   target_db_name                    = "transport"
   environment                       = var.environment
+  ec2_instance_id                   = jsondecode(data.aws_secretsmanager_secret_version.source-db.secret_string)["ec2-instance-id"]
 }
