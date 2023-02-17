@@ -7,6 +7,6 @@ instance_type                    = var.instance_type
 vpc_id                           = data.aws_vpc.selected.id
 environment                      = var.environment
 #vpc_security_group_id            = aws_security_group.security_group.id
-subnet_ids                       = [data.aws_subnet.subnet2a.id, data.aws_subnet.subnet2b.id, data.aws_subnet.subnet2c.id]
-
+public_subnet_ids                = [data.aws_subnet.public_subnet2a.id, data.aws_subnet.public_subnet2b.id, data.aws_subnet.public_subnet2c.id]
+private_subnet_ids               = [data.aws_subnet.private_subnet2a.id, data.aws_subnet.private_subnet2b.id, data.aws_subnet.private_subnet2c.id]
 }
