@@ -1,7 +1,9 @@
+
+
 provider "aws" {
   region     = "eu-west-1"
-  access_key = var.dms_source_account_access_key
-  secret_key = var.dms_source_account_secret_key
+  access_key = jsondecode(data.aws_secretsmanager_secret_version.source-db.secret_string)["dms_source_account_access_key"]
+  secret_key = jsondecode(data.aws_secretsmanager_secret_version.source-db.secret_string)["dms_source_account_secret_key"]
   alias   = "mojdsd"
 }
 
@@ -35,7 +37,7 @@ resource "aws_security_group" "dms_access_rule" {
     to_port     = 1433
     protocol    = "tcp"
     description = "Allow DMS to connect to source database"
-    cidr_blocks = [var.dms_replication_instance]
+    cidr_blocks = [module.dms.dms_replication_instance]
   }
 
   egress {
@@ -50,7 +52,7 @@ resource "aws_security_group" "dms_access_rule" {
  }
 
  resource "null_resource" "setup_source_ec2_security_group" {
-  depends_on = [module.dms]
+  depends_on = [module.dms.dms_replication_instance]
 
   provisioner "local-exec" {
     interpreter = ["bash", "-c"]
