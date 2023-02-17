@@ -1,6 +1,11 @@
 #! /bin/bash
 
-source ./connect-to-aws.sh
+#source ./connect-to-aws.sh
+
+aws configure set aws_access_key_id "$DMS_SOURCE_ACCOUNT_ACCESS_KEY" --profile dts-legacy-apps-user
+aws configure set aws_secret_access_key "$DMS_SOURCE_ACCOUNT_SECRET_KEY" --profile dts-legacy-apps-user
+aws configure set region "$AWS_REGION" --profile dts-legacy-apps-user
+aws configure set output "json" --profile dts-legacy-apps-user
 
 #retrieve existing security groups 
 aws ec2 describe-instances --instance-ids ${EC2_INSTANCE_ID} --profile dts-legacy-apps-user --query "Reservations[].Instances[].SecurityGroups[].GroupId" > security_groups

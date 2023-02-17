@@ -37,9 +37,10 @@ resource "aws_security_group" "dms_access_rule" {
 
     environment = {
       DMS_SECURITY_GROUP            = aws_security_group.dms_access_rule.id
-      EC2_INSTANCE_ID               = jsondecode(data.aws_secretsmanager_secret_version.source-db.secret_string)["ec2-instance-id"]
-      DMS_SOURCE_ACCOUNT_ACCESS_KEY = jsondecode(data.aws_secretsmanager_secret_version.source-db.secret_string)["dms_source_account_access_key"]
-      DMS_SOURCE_ACCOUNT_SECRET_KEY = jsondecode(data.aws_secretsmanager_secret_version.source-db.secret_string)["dms_source_account_secret_key"]
+      EC2_INSTANCE_ID               = nonsensitive(jsondecode(data.aws_secretsmanager_secret_version.source-db.secret_string)["ec2-instance-id"])
+      DMS_SOURCE_ACCOUNT_ACCESS_KEY = nonsensitive(jsondecode(data.aws_secretsmanager_secret_version.source-db.secret_string)["dms_source_account_access_key"])
+      DMS_SOURCE_ACCOUNT_SECRET_KEY = nonsensitive(jsondecode(data.aws_secretsmanager_secret_version.source-db.secret_string)["dms_source_account_secret_key"])
+      AWS_REGION                    = "eu-west-1"
 
     }
   }
