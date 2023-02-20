@@ -1,3 +1,9 @@
+provider "aws" {
+  region  = "eu-west-1"
+  alias   = "eu-west-1"
+  version = "~> 4.0"
+}
+
 resource "random_password" "new_password" {
   length  = 16
   special = true //Only printable ASCII characters besides '/', '@', '"', ' ' may be used.
@@ -26,10 +32,12 @@ resource "null_resource" "setup_db" {
 }
 
  resource "aws_secretsmanager_secret" "db_credentials" {
+  provider = "aws.eu-west-1"
   name = "tf-tribunals-${var.application_name}-${var.environment}-credentials"
 }
 
 resource "aws_secretsmanager_secret_version" "db_credentials_version" {
+  provider = "aws.eu-west-1"
   secret_id     = aws_secretsmanager_secret.db_credentials.id
   secret_string = <<EOF
 {
