@@ -6,8 +6,8 @@ provider "aws" {
 
 resource "random_password" "new_password" {
   length  = 16
-  special = true //Only printable ASCII characters besides '/', '@', '"', ' ' may be used.
-  override_special = "!#$%&*()-_=+[]{}<>:?" 
+  special = false //Only printable ASCII characters besides '/', '@', '"', ' ' may be used.
+  #override_special = "!#$%&*()-_=+[]{}<>:?" 
 }
 
 resource "null_resource" "setup_db" {
