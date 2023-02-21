@@ -19,8 +19,8 @@ resource "null_resource" "setup_db" {
 
     environment = {
       DB_URL = data.aws_db_instance.database.address      
-      USER_NAME = jsondecode(data.aws_secretsmanager_secret_version.rds.secret_string)["username"]
-      PASSWORD = jsondecode(data.aws_secretsmanager_secret_version.rds.secret_string)["password"]
+      USER_NAME = nonsensitive(jsondecode(data.aws_secretsmanager_secret_version.rds.secret_string)["username"])
+      PASSWORD = nonsensitive(jsondecode(data.aws_secretsmanager_secret_version.rds.secret_string)["password"])
       NEW_DB_NAME = var.app_db_name
       NEW_USER_NAME = var.app_db_login_name
       NEW_PASSWORD = random_password.new_password.result

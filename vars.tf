@@ -35,5 +35,5 @@ variable app_db_name {
 }  
 
 variable app_db_login_name {
-  default = "sa"
+  default = "transport-app"
 }  
