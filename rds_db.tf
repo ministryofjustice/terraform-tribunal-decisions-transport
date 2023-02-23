@@ -4,17 +4,6 @@ provider "aws" {
   version = "~> 4.0"
 }
 
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      region  = "eu-west-1"
-      alias   = "eu-west-1"
-      version = "~> 4.0"
-    }
-  }
-}
-
 resource "random_password" "new_password" {
   length  = 16
   special = false //Only printable ASCII characters besides '/', '@', '"', ' ' may be used.
