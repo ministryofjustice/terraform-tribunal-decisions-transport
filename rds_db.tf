@@ -1,7 +1,12 @@
-provider "aws" {
-  region  = "eu-west-1"
-  alias   = "eu-west-1"
-  version = "~> 4.0"
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      region  = "eu-west-1"
+      alias   = "eu-west-1"
+      version = "~> 4.0"
+    }
+  }
 }
 
 resource "random_password" "new_password" {
@@ -32,7 +37,7 @@ resource "null_resource" "setup_db" {
 }
 
  resource "aws_secretsmanager_secret" "db_credentials" {
-  provider = "aws.eu-west-1"
+  provider = aws.eu-west-1
   name = "tf-tribunals-${var.application_name}-${var.environment}-credentials"
 }
 
