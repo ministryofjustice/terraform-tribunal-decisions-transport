@@ -966,7 +966,8 @@ declare @vchDescription varchar(255)
 
     return
 
-;  GO
+;
+GO
 
 CREATE PROCEDURE dbo.dt_displayoaerror_u
     @iObject int,
@@ -1008,7 +1009,8 @@ as
 		delete from dbo.dtproperties 
 			where objectid=@id and property=@property
 
-;  GO
+;
+GO
 
 /*
 **	Drop an object from the dbo.dtproperties table
@@ -1366,7 +1368,8 @@ E_OAError:
     goto CleanUp
 
 
-;  GO
+;
+GO
 
 create procedure dbo.dt_removefromsourcecontrol
 
@@ -1580,7 +1583,8 @@ select @VSSGUID = 'SQLVersionControl.VCS_SQL'
     if @iReturn <> 0 raiserror('', 16, -1) /* Can't Load Helper DLLC */
 
 
-;  GO
+;
+GO
 
 /*
 **	This procedure returns the version number of the stored
@@ -1724,7 +1728,8 @@ E_OAError:
     GOTO CleanUp
 
 
-;  GO
+;
+GO
 
 
 CREATE PROCEDURE [dbo].[spAddCategory] 
@@ -1918,7 +1923,8 @@ DELETE
 
 WHERE
 	Num = @Id
-;  GO
+;
+GO
 
 
 CREATE PROCEDURE [dbo].[spDeleteSubCategory] 
@@ -1957,7 +1963,8 @@ IF @Count > 1
 			UserID = @UserID
 	END
 
-;  GO
+;
+GO
 
 
 CREATE PROCEDURE [dbo].[spGetCategoryList] 
@@ -2051,7 +2058,8 @@ FROM
 WHERE
 	UserID = @UserID
 
-;  GO
+;
+GO
 
 
 
@@ -2087,7 +2095,8 @@ WHERE
 
 AND
 	[Password] = @Password
-;  GO
+;
+GO
 
 
 CREATE PROCEDURE [dbo].[spUpdateCategory] 
